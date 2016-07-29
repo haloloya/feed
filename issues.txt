@@ -1,0 +1,28 @@
+The primitive recursive functions are among the number-theoretic functions, which are functions from the natural numbers (nonnegative integers) {0, 1, 2, ...} to the natural numbers. These functions take n arguments for some natural number n and are called n-ary.
+
+The basic primitive recursive functions are given by these axioms:
+
+Constant function: The 0-ary constant function 0 is primitive recursive.
+Successor function: The 1-ary successor function S, which returns the successor of its argument (see Peano postulates), is primitive recursive. That is, S(k) = k + 1.
+Projection function: For every n?1 and each i with 1?i?n, the n-ary projection function Pin, which returns its i-th argument, is primitive recursive.
+More complex primitive recursive functions can be obtained by applying the operations given by these axioms:
+
+Composition: Given f, a k-ary primitive recursive function, and k m-ary primitive recursive functions g1,...,gk, the composition of f with g1,...,gk, i.e. the m-ary function {\displaystyle h(x_{1},\ldots ,x_{m})=f(g_{1}(x_{1},\ldots ,x_{m}),\ldots ,g_{k}(x_{1},\ldots ,x_{m}))\,} h(x_1,\ldots,x_m) = f(g_1(x_1,\ldots,x_m),\ldots,g_k(x_1,\ldots,x_m)) \, is primitive recursive.
+Example. We take f(x) as the S(x) defined above. This f is a 1-ary PRF. And so is g(x) = S(x). So h(x) defined as f(g(x)) = S(S(x)) is a primitive recursive 1-ary function too. Informally speaking, h(x) is the function that turns x into x+2.
+
+Primitive recursion: Given f, a k-ary primitive recursive function, and g, a (k+2)-ary primitive recursive function, the (k+1)-ary function h is defined as the primitive recursion of f and g, i.e. the function h is primitive recursive when
+{\displaystyle h(0,x_{1},\ldots ,x_{k})=f(x_{1},\ldots ,x_{k})\,} h (0, x_1, \ldots, x_k) = f (x_1, \ldots, x_k) \, and
+{\displaystyle h(S(y),x_{1},\ldots ,x_{k})=g(y,h(y,x_{1},\ldots ,x_{k}),x_{1},\ldots ,x_{k})\,.} h (S(y), x_1, \ldots, x_k) = g (y, h (y, x_1, \ldots, x_k), x_1, \ldots, x_k) \,.
+Example. Suppose f(x) = P11(x) = x and g(x,y,z)= S(P23(x,y,z)) = S(y). Then h(0,x) = x and h(S(y),x) = g(y,h(y,x),x) = S(h(y,x)). Now h(0,1) = 1, h(1,1) = S(h(0,1)) = 2, h(2,1) = S(h(1,1)) = 3. This h is a 2-ary primitive recursive function. We can call it 'addition'.
+
+The primitive recursive functions are the basic functions and those obtained from the basic functions by applying these operations a finite number of times.
+
+Role of the projection functions[edit]
+The projection functions can be used to avoid the apparent rigidity in terms of the arity of the functions above; by using compositions with various projection functions, it is possible to pass a subset of the arguments of one function to another function. For example, if g and h are 2-ary primitive recursive functions then
+
+{\displaystyle f(a,b,c)=g(h(c,a),h(a,b))\!} f(a,b,c) = g(h(c,a),h(a,b)) \!
+is also primitive recursive. One formal definition using projection functions is
+
+{\displaystyle f(a,b,c)=g(h(P_{3}^{3}(a,b,c),P_{1}^{3}(a,b,c)),h(P_{1}^{3}(a,b,c),P_{2}^{3}(a,b,c))).} f(a,b,c) = g(h(P^3_3(a,b,c),P^3_1(a,b,c)),h(P^3_1(a,b,c),P^3_2(a,b,c))).
+Converting predicates to numeric functions[edit]
+In some settings it is natural to consider primitive recursive functions that take as inputs tuples that mix numbers with truth values { t= true, f=false }, or that produce truth values as outputs (see Kleene [1952 pp. 226–227]). This can be accomplished by identifying the truth values with numbers in any fixed manner. For example, it is common to identify the truth value t with the number 1 and the truth value f with the number 0. Once this identification has been made, the characteristic function of a set A, which always returns 1 or 0, can be viewed as a predicate that tells whether a number is in the set A. Such an identification of predicates with numeric functions will be assumed for the remainder of this article.
